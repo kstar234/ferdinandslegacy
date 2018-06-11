@@ -1,0 +1,571 @@
+focus_tree = {
+	
+		country = {
+			factor = 0
+		
+		modifier = {
+			add = 10
+			tag = GOR
+		}
+	}
+
+#	focus = {
+#		id = CAN_
+#		icon = GFX_
+#		prerequisite = { focus = }
+#		mutually_exclusive = { focus =  }
+#		x = -3
+#		y = 0
+#		relative_position_id = 
+#
+#		cost = 10
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#
+#		available = {
+#
+#		}
+#		
+#		bypass = {
+#
+#		}
+#
+#		cancel_if_invalid = yes
+#		continue_if_invalid = no
+#		available_if_capitulated = no
+#
+#		complete_tooltip = {
+#
+#		}
+#
+#		completion_reward = {
+#
+#		}
+#	}
+
+	# military branch. some of these icons are placeholders
+
+	focus = {
+		id = GOR_recreate_common_army
+		icon = GFX_goal_axis_build_infantry
+		x = 1
+		y = 0
+
+		cost = 10
+
+		ai_wilL_do = {
+			factor = 1
+		}
+
+		available = {
+			is_neighbor_of = HUG
+		}
+
+		completion_reward = {
+        	army_experience = 10
+        	add_manpower = 15000
+    	}
+	}
+
+	focus = {
+		id = GOR_expand_recruitment
+		icon = GFX_goal_expand_recruitment
+		x = 1
+		y = 1
+
+		cost = 10
+
+		prerequisite = { focus = GOR_recreate_common_army }
+
+		available = {
+			OR = {
+				has_idea = disarmed_nation
+				has_idea = volunteer_only
+			}
+		}
+
+		bypass = {
+			AND = {
+				has_idea = extensive_conscription
+				has_idea = limited_conscription
+			}
+		}
+
+		completion_reward = {
+				remove_idea = volunteer_only 
+				add_idea = limited_conscription 
+			}
+		}
+
+
+	focus = {
+		id = GOR_modernize_austrian_army
+		icon = GFX_goal_axis_build_infantry
+		x = 3
+		y = 1
+
+		cost = 10
+
+		prerequisite = { focus = GOR_expand_recruitment }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_review_military_admin
+		icon = GFX_goal_austria_army
+		x = 1
+		y = 2
+
+		cost = 10
+
+		prerequisite = { focus = GOR_expand_recruitment }
+
+		completion_reward = {
+			add_command_power = 15
+			army_experience = 10
+		}
+	}
+
+	focus = {
+		id = GOR_mistakes_of_end_war
+		icon = GFX_focus_secret_rearmament
+		x = 3
+		y = 2
+
+		cost = 10
+
+		prerequisite = { focus = GOR_modernize_austrian_army }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_reconstruct_military_academy
+		icon = GFX_focus_generic_military_academy
+		x = 3
+		y = 3
+
+		cost = 10
+
+		prerequisite = { focus = GOR_mistakes_of_end_war}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_create_landwehr
+		icon = GFX_goal_landwehr
+		cost = 8
+		x = 5
+		y = 3
+
+		prerequisite = { focus = GOR_review_military_admin }
+		prerequisite = { focus = GOR_modernize_austrian_army }
+
+		completion_reward = {
+
+		}
+	}
+
+	#Political Branch
+
+	focus = {
+		id = GOR_ideology_question
+		icon = GFX_goal_generic_improve_relations
+		x = 16
+		y = 0
+
+		available = {
+
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	#democracy leads to democratic faction in 1936 or so
+	focus = {
+		id = GOR_democratic_path
+		icon = GFX_goal_unknown
+		x = 10
+		y = 1
+		cost = 10
+
+		prerequisite = { focus = GOR_ideology_question }
+		mutually_exclusive = { focus = GOR_radical_populist_path focus = GOR_monarchist_answer }
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_emphasize_democracy
+		icon = GFX_goal_unknown
+		x = 8
+		y = 2
+		cost = 10
+
+		prerequisite = { focus = GOR_democratic_path }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_a_new_parliament
+		icon = GFX_goal_unknown
+		x = 8
+		y = 3
+		cost = 10
+
+		prerequisite = { focus = GOR_emphasize_democracy }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_emphasize_radical_socialism
+		icon = GFX_goal_unknown
+		x = 12
+		y = 2
+		cost = 10
+
+		mutually_exclusive = { focus = GOR_emphasize_democracy }
+
+		prerequisite = { focus = GOR_democratic_path }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_new_austria
+		icon = GFX_goal_unknown
+		x = 12
+		y = 3
+		cost = 10
+
+		prerequisite = { focus = GOR_emphasize_radical_socialism }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_1930_elections
+		icon = GFX_goal_unknown
+		x = 10
+		y = 4
+		cost = 10
+
+		prerequisite = { focus = GOR_new_austria focus = GOR_a_new_parliament }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_radical_populist_path
+		icon = GFX_goal_generic_demand_territory
+		x = 16
+		y = 1
+		cost = 10		
+
+		prerequisite = { focus = GOR_ideology_question }
+		mutually_exclusive = { focus = GOR_democratic_path focus = GOR_monarchist_answer }
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_sch_ideas
+		icon = GFX_goal_generic_political_pressure
+		x = 16
+		y = 2
+		cost = 10
+
+		prerequisite = { focus = GOR_radical_populist_path }
+		mutually_exclusive = { focus = GOR_steidle_paramilitarism }
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_remove_enemy
+		icon = GFX_goal_generic_military_deal
+		x = 16
+		y = 3
+		cost = 10
+
+		prerequisite = { focus = GOR_sch_ideas }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_fatherland_front
+		icon = GFX_goal_molotov_ribbentrop_pact
+		x = 14
+		y = 3
+		cost = 10
+
+		prerequisite = { focus = GOR_sch_ideas }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_carniola_coup
+		icon = GFX_focus_generic_treaty
+		x = 14
+		y = 6
+
+		prerequisite = { focus = GOR_fatherland_front }
+		prerequisite = { focus = GOR_establish_a_better_austria }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_establish_a_better_austria
+		icon = GFX_focus_generic_home_defense
+		x = 16
+		y = 5
+		cost = 10
+
+		prerequisite = { focus = GOR_fatherland_front focus = GOR_expand_heimpartei }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_steidle_paramilitarism
+		icon = GFX_focus_generic_combined_arms
+		x = 18
+		y = 2
+		cost = 10
+
+		prerequisite = { focus = GOR_radical_populist_path }
+
+		mutually_exclusive = { focus = GOR_sch_ideas }
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_expand_heimpartei
+		icon = GFX_focus_generic_treaty
+		x = 18
+		y = 3
+		cost = 10
+
+		prerequisite = { focus = GOR_steidle_paramilitarism }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_fortress_austria
+		icon = GFX_goal_generic_defence
+		x = 18
+		y = 6
+		cost = 10
+
+		prerequisite = { focus = GOR_expand_heimpartei }
+		prerequisite = { focus = GOR_establish_a_better_austria }
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_steidlism
+		icon = GFX_goal_steidlism
+		x = 20
+		y = 3
+		cost = 10
+
+		prerequisite = { focus = GOR_steidle_paramilitarism }
+	}
+
+	#monarchist
+	focus = {
+		id = GOR_monarchist_answer
+		icon = GFX_goal_unknown
+		x = 23
+		y = 1
+
+		mutually_exclusive = { focus = GOR_democratic_path focus = GOR_radical_populist_path }
+
+		prerequisite = { focus = GOR_ideology_question }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_habsburg_solution
+		icon = GFX_goal_unknown
+		x = 23
+		y = 2
+
+		prerequisite = { focus = GOR_monarchist_answer }
+
+		available = {
+
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_carniola_takeover
+		icon = GFX_goal_unknown
+		x = 23
+		y = 3
+		cost = 10
+
+		prerequisite = { focus = GOR_habsburg_solution }
+
+		completion_reward = {
+			CRN = {
+				country_event = austria.2
+			}
+		}
+	}
+
+	focus = {
+		id = GOR_expand_states
+		x = 21
+		y = 5
+		cost = 10
+
+		prerequisite = { focus = GOR_bohemia_takeover focus = GOR_carniola_takeover }
+
+		available = {
+		}
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_create_puppet_states
+		x = 21
+		y = 6
+		cost = 10
+
+
+
+		prerequisite = { focus = GOR_expand_states }
+	}
+
+	focus = {
+		id = GOR_bohemia_takeover
+		x = 23
+		y = 4
+
+		prerequisite = { focus = GOR_carniola_takeover }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_the_betrayers
+		icon = GFX_goal_unknown
+		x = 25
+		y = 4
+
+		cost = 10
+
+		prerequisite = { focus = GOR_habsburg_solution }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_tomorrow_belongs_to_me
+		icon = GFX_goal_unknown
+		x = 25
+		y = 5
+
+		cost = 10
+
+		prerequisite = { focus = GOR_the_betrayers }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_aeiou
+		icon = GFX_goal_unknown
+		x = 27
+		y = 5
+
+		cost = 10
+
+		prerequisite = { focus = GOR_the_betrayers }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = GOR_invite_italy
+		icon = GFX_goal_unknown
+		x = 16
+		y = 6
+
+		prerequisite = { focus = GOR_establish_a_better_austria }
+
+		completion_reward = {
+
+		}
+	}
+}

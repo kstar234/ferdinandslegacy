@@ -1,0 +1,22 @@
+SpriteTypes = {
+		
+	spriteType = {
+		name = "GFX_goal_austria_army"
+		texturefile = "/gfx/interface/goals/goal_austria_army.dds"
+	}
+
+	spriteType = {
+		name = "GFX_goal_expand_recruitment"
+		texturefile = "/gfx/interface/goals/goal_expand_recruitment.dds"
+	}
+
+	spriteType = {
+		name = "GFX_goal_landwehr"
+		texturefile = "/gfx/interface/goals/goal_landwehr.dds"
+	}
+
+	spriteType = {
+		name = "GFX_goal_steidlism"
+		texturefile = "/gfx/interface/goals/goal_steidlism.dds"
+	}
+}
